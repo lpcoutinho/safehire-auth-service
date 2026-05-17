@@ -46,12 +46,12 @@ Fixtures:
 **Todo arquivo criado deve ter docstring no topo** explicando sua responsabilidade.
 
 ## Critérios de Aceitação
-- [ ] `pip install -r requirements.txt` instala sem erros
-- [ ] `pytest -v` roda (pode pular testes que dependem de módulos ainda não implementados)
-- [ ] `black app/ tests/ --check` passa
-- [ ] `isort app/ tests/ --check` passa
-- [ ] `mypy app/` passa
-- [ ] Todos os arquivos têm docstring
+- [x] `pip install -r requirements.txt` instala sem erros
+- [x] `pytest -v` roda (pode pular testes que dependem de módulos ainda não implementados)
+- [x] `black app/ tests/ --check` passa
+- [x] `isort app/ tests/ --check` passa
+- [x] `mypy app/` passa
+- [x] Todos os arquivos têm docstring
 
 ## TodoList
 - Revise as implementações e se tudo passou atualize: 

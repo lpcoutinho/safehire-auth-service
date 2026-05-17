@@ -10,14 +10,14 @@
 ---
 
 ### Fase 1: Configuração Base (Dia 1)
-- [ ] Criar estrutura de pastas do projeto
-- [ ] Criar `pyproject.toml` com configs (black, isort, pytest, mypy)
-- [ ] Criar `requirements.txt` com todas as dependências (incluindo observabilidade)
-- [ ] Criar `Dockerfile` otimizado
-- [ ] Criar `.env.example` com todas as variáveis (incluindo observabilidade)
-- [ ] Criar `conftest.py` com fixtures básicos
-- [ ] Configurar `.gitignore` apropriado
-- [ ] **Documentar** cada arquivo criado com docstring
+- [x] Criar estrutura de pastas do projeto
+- [x] Criar `pyproject.toml` com configs (black, isort, pytest, mypy)
+- [x] Criar `requirements.txt` com todas as dependências (incluindo observabilidade)
+- [x] Criar `Dockerfile` otimizado
+- [x] Criar `.env.example` com todas as variáveis (incluindo observabilidade)
+- [x] Criar `conftest.py` com fixtures básicos
+- [x] Configurar `.gitignore` apropriado
+- [x] **Documentar** cada arquivo criado com docstring
 
 ### Fase 2: Camada de Configuração e Database (Dia 1-2)
 - [ ] Implementar `config.py` com Pydantic Settings + `OBSERVABILITY_STACK`
