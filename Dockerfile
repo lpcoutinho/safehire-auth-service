@@ -2,22 +2,20 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Copiar requirements primeiro (melhora cache do Docker)
+# Copiar requirements primeiro para aproveitar o cache de camadas do Docker
 COPY requirements.txt .
 
-# Instalar dependências Python
+# Instalar dependências direto no ambiente final de forma limpa
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar código da aplicação
-COPY . .
+# Copiar o código da aplicação
+COPY app/ ./app/
 
-# Criar usuário não-root para segurança
+# Configurar o usuário não-root (UID 1000 padrão)
 RUN useradd -m -u 1000 appuser && \
     chown -R appuser:appuser /app
 USER appuser
 
-# Expor porta
-EXPOSE 8000
+EXPOSE 8001
 
-# Comando de execução
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001"]
