@@ -6,7 +6,7 @@ Execute este prompt para implementar a **Fase 1** do Auth Service.
 Antes de executar qualquer ação, considere documentação e regras em:
 - `docs/2-principios-norteadores.md`
 - `docs/3-arquitetura.md`
-- `docs/6-validacao.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Criar estrutura de pastas e arquivos de configuração base do projeto.
@@ -52,3 +52,8 @@ Fixtures:
 - [ ] `isort app/ tests/ --check` passa
 - [ ] `mypy app/` passa
 - [ ] Todos os arquivos têm docstring
+
+## TodoList
+- Revise as implementações e se tudo passou atualize: 
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`

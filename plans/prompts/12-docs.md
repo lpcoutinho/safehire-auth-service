@@ -2,9 +2,11 @@
 
 Execute este prompt para implementar a **Fase 12** do Auth Service.
 
-## Pré-condições
-- Fase 11 concluída (testes passando, coverage ≥ 80%)
-- Consulte `docs/2-principios-norteadores.md` (documentação)
+## Pré-condições (obrigatório)
+Antes de executar qualquer ação, considere documentação e regras em:
+- `docs/2-principios-norteadores.md`
+- `docs/3-arquitetura.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Finalizar documentação do serviço: README, docs, OpenAPI, runbook.
@@ -73,3 +75,8 @@ Verificar que `/docs` e `/redoc` estão funcionando (FastAPI gera automaticament
 - [ ] OpenAPI/Swagger acessível em /docs
 - [ ] Peer review realizado
 - [ ] Todos os critérios de `docs/6-validacao.md` atendidos
+
+## TodoList
+- Revise as implementações e se tudo passou atualize:
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`

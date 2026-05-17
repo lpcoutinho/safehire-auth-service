@@ -2,9 +2,11 @@
 
 Execute este prompt para implementar a **Fase 4** do Auth Service.
 
-## Pré-condições
-- Fase 3 concluída (Pydantic models + ORM)
-- Consulte `docs/2-principios-norteadores.md` (SRP, injeção de dependências)
+## Pré-condições (obrigatório)
+Antes de executar qualquer ação, considere documentação e regras em:
+- `docs/2-principios-norteadores.md`
+- `docs/3-arquitetura.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Implementar a camada de acesso a dados (Repository pattern).
@@ -77,3 +79,8 @@ Depois dos testes passarem (RED), implementar o arquivo acima (GREEN).
 - [ ] Nenhum import direto de SQLAlchemy fora do repository
 - [ ] `mypy app/repositories/` passa sem erros
 - [ ] Docstring no topo do arquivo e em cada método público
+
+## TodoList
+- Revise as implementações e se tudo passou atualize:
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`

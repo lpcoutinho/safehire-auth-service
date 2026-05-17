@@ -2,9 +2,11 @@
 
 Execute este prompt para implementar a **Fase 8** do Auth Service.
 
-## Pré-condições
-- Fase 7 concluída (middleware)
-- Consulte `docs/3-arquitetura.md` (triple-stack observability)
+## Pré-condições (obrigatório)
+Antes de executar qualquer ação, considere documentação e regras em:
+- `docs/2-principios-norteadores.md`
+- `docs/3-arquitetura.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Criar camada de observabilidade com suporte a Floci (dev), open-source (VPS) e CloudWatch (AWS).
@@ -86,3 +88,8 @@ Depois dos testes passarem (RED), implementar os arquivos acima (GREEN).
 - [ ] `OBSERVABILITY_STACK=aws` usa CloudWatch nativo
 - [ ] `mypy app/observability/` passa sem erros
 - [ ] Docstring em cada módulo e função pública
+
+## TodoList
+- Revise as implementações e se tudo passou atualize:
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`

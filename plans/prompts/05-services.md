@@ -2,9 +2,11 @@
 
 Execute este prompt para implementar a **Fase 5** do Auth Service.
 
-## Pré-condições
-- Fase 4 concluída (UsuarioRepository)
-- Consulte `docs/2-principios-norteadores.md` (Anti-Corruption Layer, idempotência)
+## Pré-condições (obrigatório)
+Antes de executar qualquer ação, considere documentação e regras em:
+- `docs/2-principios-norteadores.md`
+- `docs/3-arquitetura.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Implementar lógica de negócio: JWT operations e autenticação.
@@ -139,3 +141,8 @@ Depois dos testes passarem (RED), implementar os arquivos acima (GREEN).
 - [ ] `mypy app/services/` passa sem erros
 - [ ] Nenhum import direto de `jose` ou `passlib` fora dos services
 - [ ] Docstring em todos os métodos públicos
+
+## TodoList
+- Revise as implementações e se tudo passou atualize:
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`

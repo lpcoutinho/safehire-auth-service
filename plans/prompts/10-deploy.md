@@ -2,9 +2,11 @@
 
 Execute este prompt para implementar a **Fase 10** do Auth Service.
 
-## Pré-condições
-- Fase 9 concluída (app.main funcionando)
-- Consulte `docs/3-arquitetura.md` (docker/ estrutura)
+## Pré-condições (obrigatório)
+Antes de executar qualquer ação, considere documentação e regras em:
+- `docs/2-principios-norteadores.md`
+- `docs/3-arquitetura.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Criar configs de deploy para dev (Floci), VPS (open-source) e AWS (ECS).
@@ -71,3 +73,8 @@ Adicionar docstring no topo de cada arquivo de configuração.
 - [ ] `curl http://localhost:4566/_localstack/health` → Floci ativo
 - [ ] Task definition ECS é válida JSON
 - [ ] Variáveis de ambiente determinam stack sem mudar código
+
+## TodoList
+- Revise as implementações e se tudo passou atualize:
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`

@@ -2,9 +2,11 @@
 
 Execute este prompt para implementar a **Fase 6** do Auth Service.
 
-## Pré-condições
-- Fase 5 concluída (AuthService, JWTService)
-- Consulte `docs/2-principios-norteadores.md` (injeção de dependência via Depends)
+## Pré-condições (obrigatório)
+Antes de executar qualquer ação, considere documentação e regras em:
+- `docs/2-principios-norteadores.md`
+- `docs/3-arquitetura.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Implementar endpoints HTTP de autenticação e CRUD de usuários.
@@ -109,3 +111,8 @@ Depois dos testes passarem (RED), implementar os arquivos acima (GREEN).
 - [ ] Endpoints retornam status codes corretos (201, 200, 401, 404, 409, 422)
 - [ ] `mypy app/routes/` passa sem erros
 - [ ] Docstring em cada arquivo e endpoint
+
+## TodoList
+- Revise as implementações e se tudo passou atualize:
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`

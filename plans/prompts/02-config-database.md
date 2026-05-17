@@ -2,9 +2,11 @@
 
 Execute este prompt para implementar a **Fase 2** do Auth Service.
 
-## Pré-condições
-- Fase 1 concluída (estrutura de pastas + dependências instaladas)
-- Consulte `docs/2-principios-norteadores.md` para regras de clean code
+## Pré-condições (obrigatório)
+Antes de executar qualquer ação, considere documentação e regras em:
+- `docs/2-principios-norteadores.md`
+- `docs/3-arquitetura.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Implementar config, database e ORM models.
@@ -50,7 +52,6 @@ Testar:
 ```python
 """Conexão assíncrona PostgreSQL via SQLAlchemy."""
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-from sqlalchemy.orm import DeclarativeBase
 from app.config import settings
 
 engine = create_async_engine(settings.database_url, echo=settings.debug)
@@ -108,3 +109,8 @@ Implementar FakeDatabase com SQLite in-memory para testes.
 - [ ] `mypy app/` não acusa erros nos novos módulos
 - [ ] Docstring no topo de cada arquivo
 - [ ] Injeção de dependência via parâmetros (sem globais)
+
+## TodoList
+- Revise as implementações e se tudo passou atualize:
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`

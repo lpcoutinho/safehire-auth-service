@@ -2,9 +2,11 @@
 
 Execute este prompt para implementar a **Fase 11** do Auth Service.
 
-## Pré-condições
-- Fases 1-10 concluídas
-- Consulte `docs/6-validacao.md` (critérios completos)
+## Pré-condições (obrigatório)
+Antes de executar qualquer ação, considere documentação e regras em:
+- `docs/2-principios-norteadores.md`
+- `docs/3-arquitetura.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Garantir cobertura de testes > 80% e validação completa do serviço.
@@ -57,3 +59,8 @@ Se coverage < 80% ou mypy/black/isort falharem, corrigir antes de prosseguir.
 - [ ] Testes são F.I.R.S.T
 - [ ] Nenhum teste depende de outro (independência)
 - [ ] Fakes implementados para todo I/O externo
+
+## TodoList
+- Revise as implementações e se tudo passou atualize:
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`

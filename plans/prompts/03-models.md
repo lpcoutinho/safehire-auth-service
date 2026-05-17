@@ -2,9 +2,11 @@
 
 Execute este prompt para implementar a **Fase 3** do Auth Service.
 
-## Pré-condições
-- Fase 2 concluída (config, database, ORM model)
-- Consulte `docs/2-principios-norteadores.md` para regras de tipos e nomenclatura
+## Pré-condições (obrigatório)
+Antes de executar qualquer ação, considere documentação e regras em:
+- `docs/2-principios-norteadores.md`
+- `docs/3-arquitetura.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Implementar schemas Pydantic de request/response para usuários e autenticação.
@@ -102,3 +104,8 @@ Depois dos testes passarem (RED), implementar os arquivos acima (GREEN).
 - [ ] `mypy app/models/` passa sem erros
 - [ ] Docstring no topo de cada arquivo
 - [ ] Docstring em cada classe pública
+
+## TodoList
+- Revise as implementações e se tudo passou atualize:
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`

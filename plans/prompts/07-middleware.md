@@ -2,9 +2,11 @@
 
 Execute este prompt para implementar a **Fase 7** do Auth Service.
 
-## Pré-condições
-- Fase 6 concluída (routes)
-- Consulte `docs/2-principios-norteadores.md` (SRP, early returns)
+## Pré-condições (obrigatório)
+Antes de executar qualquer ação, considere documentação e regras em:
+- `docs/2-principios-norteadores.md`
+- `docs/3-arquitetura.md`
+- `plans/3-validacao.md`
 
 ## Objetivo
 Implementar middleware de autenticação e observabilidade.
@@ -83,3 +85,8 @@ Depois dos testes passarem (RED), implementar os arquivos acima (GREEN).
 - [ ] `curl http://localhost:8000/metrics` → 200 com métricas Prometheus
 - [ ] `mypy app/middleware/` passa sem erros
 - [ ] Docstring em cada arquivo e função pública
+
+## TodoList
+- Revise as implementações e se tudo passou atualize:
+    - `plans/2-todolist.md`
+    - `plans/1-roadmap.md`
