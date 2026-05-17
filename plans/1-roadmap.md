@@ -11,18 +11,18 @@
 ---
 
 ### Fase 0: Git Flow Setup
-- [ ] Criar branch `develop` a partir de `main`
-- [ ] Criar branch `staging` a partir de `main`
-- [ ] Proteger `main` (PR + CI + 1 approval, sem push direto)
-- [ ] Proteger `staging` (PR + CI + 1 approval, sem push direto)
-- [ ] Criar `.github/PULL_REQUEST_TEMPLATE.md`
-- [ ] Criar `plans/git-flow.md`
-- [ ] Atualizar `plans/1-roadmap.md` com Fase 0
-- [ ] Atualizar `plans/2-todolist.md` com Git Flow checklist
-- [ ] Atualizar `plans/3-validacao.md` com Git Flow validation
-- [ ] Atualizar `docs/2-principios-norteadores.md` com Princípio 6
-- [ ] Atualizar `docs/4-comandos.md` com comandos Git Flow
-- [ ] Atualizar prompts em `plans/prompts/` com referência ao `plans/git-flow.md`
+- [x] Criar branch `develop` a partir de `main`
+- [x] Criar branch `staging` a partir de `main`
+- [ ] Proteger `main` no GitHub (PR + CI + 1 approval, sem push direto)
+- [ ] Proteger `staging` no GitHub (PR + CI + 1 approval, sem push direto)
+- [x] Criar `.github/PULL_REQUEST_TEMPLATE.md`
+- [x] Criar `plans/git-flow.md`
+- [x] Atualizar `plans/1-roadmap.md` com Fase 0
+- [x] Atualizar `plans/2-todolist.md` com Git Flow checklist
+- [x] Atualizar `plans/3-validacao.md` com Git Flow validation
+- [x] Atualizar `docs/2-principios-norteadores.md` com Princípio 6
+- [x] Atualizar `docs/4-comandos.md` com comandos Git Flow
+- [x] Atualizar prompts em `plans/prompts/` com referência ao `plans/git-flow.md`
 
 ### Fase 1: Configuração Base (Dia 1)
 - [x] Criar estrutura de pastas do projeto
