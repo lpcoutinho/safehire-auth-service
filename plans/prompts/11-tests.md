@@ -7,6 +7,7 @@ Antes de executar qualquer ação, considere documentação e regras em:
 - `docs/2-principios-norteadores.md`
 - `docs/3-arquitetura.md`
 - `plans/3-validacao.md`
+- `plans/git-flow.md`
 
 ## Objetivo
 Garantir cobertura de testes > 80% e validação completa do serviço.
@@ -64,3 +65,4 @@ Se coverage < 80% ou mypy/black/isort falharem, corrigir antes de prosseguir.
 - Revise as implementações e se tudo passou atualize:
     - `plans/2-todolist.md`
     - `plans/1-roadmap.md`
+- Crie um PR da sua branch para `develop` e atualize os plans após o merge

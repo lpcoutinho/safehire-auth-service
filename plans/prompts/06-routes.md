@@ -7,6 +7,7 @@ Antes de executar qualquer ação, considere documentação e regras em:
 - `docs/2-principios-norteadores.md`
 - `docs/3-arquitetura.md`
 - `plans/3-validacao.md`
+- `plans/git-flow.md`
 
 ## Objetivo
 Implementar endpoints HTTP de autenticação e CRUD de usuários.
@@ -116,3 +117,4 @@ Depois dos testes passarem (RED), implementar os arquivos acima (GREEN).
 - Revise as implementações e se tudo passou atualize:
     - `plans/2-todolist.md`
     - `plans/1-roadmap.md`
+- Crie um PR da sua branch para `develop` e atualize os plans após o merge

@@ -41,6 +41,31 @@ curl http://localhost:8000/metrics
 curl http://localhost:8000/health
 ```
 
+### Git Flow Commands
+
+```bash
+# Criar feature branch a partir de develop
+git checkout develop && git pull origin develop
+git checkout -b feature/02-config-database develop
+
+# Sincronizar feature branch com develop (rebase)
+git checkout feature/02-config-database
+git fetch origin develop
+git rebase origin/develop
+
+# Publicar branch e criar PR
+git push origin feature/02-config-database
+gh pr create --base develop --title "Fase 2: Config + Database" --body ""
+
+# Atualizar após merge do PR
+git checkout develop && git pull origin develop
+git branch -d feature/02-config-database
+
+# Fluxo develop → staging → main (via PR no GitHub)
+# gh pr create --base staging --title "Release v0.1.0" --body ""
+# gh pr create --base main --title "Release v0.1.0" --body ""
+```
+
 ---
 
 ## Próximos Passos

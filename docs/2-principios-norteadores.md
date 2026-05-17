@@ -86,4 +86,22 @@ O serviço deve ser deployável em ambos os cenários sem mudança de código:
 - Nenhum import direto de terceiros fora dos módulos de serviço/infra
 
 
+
+### 6. Git Flow
+
+Toda implementação segue a estratégia de branches definida em `plans/git-flow.md`:
+
+- **Branches permanentes**: `main` (produção), `staging` (pré-produção), `develop` (integração)
+- **Branches temporárias**: `feature/*` (novas funcionalidades), `fix/*` (correções), `hotfix/*` (urgentes)
+- **Fluxo de merge**: `feature/*` → `develop` → `staging` → `main`
+- **Proteção**: `main` e `staging` são protegidas (PR + CI + approval)
+- **Cada fase do roadmap** vira uma `feature/*` branch
+- **PR template** em `.github/PULL_REQUEST_TEMPLATE.md` obrigatório
+
+Este fluxo garante que:
+- `main` nunca recebe código não testado
+- `staging` serve como ambiente de QA antes de produção
+- `develop` é a branch de integração contínua
+- Features são isoladas até completas e validadas
+
 ---

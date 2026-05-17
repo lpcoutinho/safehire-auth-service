@@ -6,8 +6,23 @@
 - [ ] **Testes existem antes do código**: para cada método novo, o teste deve ser escrito **primeiro**.
 - [ ] **Documentação**: docstring no topo do arquivo + docstring em cada método público.
 - [ ] **Observabilidade**: logging estruturado + métricas de duração + tracing.
+- [ ] **Git Flow**: cada fase implementada em uma branch `feature/*` com PR para `develop`.
 
 ---
+
+### Fase 0: Git Flow Setup
+- [ ] Criar branch `develop` a partir de `main`
+- [ ] Criar branch `staging` a partir de `main`
+- [ ] Proteger `main` (PR + CI + 1 approval, sem push direto)
+- [ ] Proteger `staging` (PR + CI + 1 approval, sem push direto)
+- [ ] Criar `.github/PULL_REQUEST_TEMPLATE.md`
+- [ ] Criar `plans/git-flow.md`
+- [ ] Atualizar `plans/1-roadmap.md` com Fase 0
+- [ ] Atualizar `plans/2-todolist.md` com Git Flow checklist
+- [ ] Atualizar `plans/3-validacao.md` com Git Flow validation
+- [ ] Atualizar `docs/2-principios-norteadores.md` com Princípio 6
+- [ ] Atualizar `docs/4-comandos.md` com comandos Git Flow
+- [ ] Atualizar prompts em `plans/prompts/` com referência ao `plans/git-flow.md`
 
 ### Fase 1: Configuração Base (Dia 1)
 - [x] Criar estrutura de pastas do projeto
@@ -159,5 +174,6 @@
 - [ ] Criar runbook de troubleshooting
 - [ ] Revisão de código (peer review)
 - [ ] Refinamentos baseados em feedback
+- [ ] Fazer merge de `develop` para `staging` e de `staging` para `main`
 
 ---

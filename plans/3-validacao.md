@@ -2,6 +2,17 @@
 
 ## Validação e Critérios de Aceitação
 
+### Git Flow
+- [ ] Toda implementação segue em branch `feature/*` criada a partir de `develop`
+- [ ] Pull Request é aberto para `develop` com descrição clara
+- [ ] PR tem CI verde (lint + types + test + build) antes do merge
+- [ ] PR é aprovado por 1 reviewer
+- [ ] Branch é atualizada com `develop` antes do PR (`git merge develop`)
+- [ ] `develop` → `staging`: PR com CI verde + 1 approval
+- [ ] `staging` → `main`: PR com CI verde + 1 approval + CD manual
+- [ ] Após merge, branch feature é deletada
+- [ ] `plans/1-roadmap.md` e `plans/2-todolist.md` são atualizados após cada merge
+
 ### Test-First
 - [ ] Todo método novo tem um teste que falha antes da implementação
 - [ ] Commits separam `RED (teste)` de `GREEN (implementação)`

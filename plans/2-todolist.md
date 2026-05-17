@@ -2,6 +2,15 @@
 
 ## TodoList Detalhada
 
+### Git Flow Setup
+- [ ] Criar branch `develop` a partir de `main`
+- [ ] Criar branch `staging` a partir de `main`
+- [ ] Proteger `main` no GitHub (PR + CI + 1 approval, sem push direto)
+- [ ] Proteger `staging` no GitHub (PR + CI + 1 approval, sem push direto)
+- [ ] Criar `.github/PULL_REQUEST_TEMPLATE.md`
+- [ ] Criar `plans/git-flow.md`
+- [ ] Criar template de PR no GitHub
+
 ### Configuração
 - [x] Criar estrutura de pastas
 - [x] Criar `pyproject.toml`:
