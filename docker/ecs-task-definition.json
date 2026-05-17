@@ -1,0 +1,27 @@
+{
+  "family": "safehire-auth-service",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::account:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "app",
+      "image": "account.dkr.ecr.region.amazonaws.com/safehire-auth:latest",
+      "portMappings": [{ "containerPort": 8001, "protocol": "tcp" }],
+      "environment": [
+        { "name": "ENV", "value": "production" },
+        { "name": "OBSERVABILITY_STACK", "value": "aws" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/safehire/auth-service",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
