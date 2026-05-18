@@ -4,22 +4,54 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "512",
   "memory": "1024",
-  "executionRoleArn": "arn:aws:iam::account:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::ACCOUNT_ID:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::ACCOUNT_ID:role/ecsTaskRole",
   "containerDefinitions": [
     {
       "name": "app",
-      "image": "account.dkr.ecr.region.amazonaws.com/safehire-auth:latest",
+      "image": "ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/safehire-auth:latest",
       "portMappings": [{ "containerPort": 8001, "protocol": "tcp" }],
       "environment": [
         { "name": "ENV", "value": "production" },
-        { "name": "OBSERVABILITY_STACK", "value": "aws" }
+        { "name": "OBSERVABILITY_STACK", "value": "aws" },
+        { "name": "ALLOWED_ORIGINS", "value": "https://app.safehire.com" }
+      ],
+      "secrets": [
+        {
+          "name": "DATABASE_URL",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:safehire/auth/DATABASE_URL"
+        },
+        {
+          "name": "SECRET_KEY",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:safehire/auth/SECRET_KEY"
+        }
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/safehire/auth-service",
+          "awslogs-group": "/ecs/safehire-auth-service",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost:8001/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 60
+      }
+    },
+    {
+      "name": "xray-daemon",
+      "image": "amazon/aws-xray-daemon:latest",
+      "portMappings": [{ "containerPort": 2000, "protocol": "udp" }],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/safehire-auth-service",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "xray"
         }
       }
     }

@@ -1,0 +1,62 @@
+# Dev stack — PostgreSQL + LocalStack (Floci) + OpenTelemetry Collector + Auth Service
+# Uso: docker compose -f docker/docker-compose.yml up -d
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: safehire_auth
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d safehire_auth"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  floci:
+    image: localstack/localstack:latest
+    environment:
+      SERVICES: cloudwatch,logs,xray
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+    ports:
+      - "4566:4566"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    environment:
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_REGION: us-east-1
+      AWS_ENDPOINT_URL: http://floci:4566
+    depends_on:
+      floci:
+        condition: service_healthy
+
+  auth-service:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      ENV: development
+      OBSERVABILITY_STACK: floci
+      FLOCI_ENDPOINT: http://floci:4566
+      DATABASE_URL: postgresql+asyncpg://user:password@postgres:5432/safehire_auth
+      SECRET_KEY: dev-secret-key-change-in-production
+      ALLOWED_ORIGINS: http://localhost:3000
+      LOG_LEVEL: DEBUG
+    depends_on:
+      postgres:
+        condition: service_healthy
+      floci:
+        condition: service_healthy
