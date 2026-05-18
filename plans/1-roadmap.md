@@ -113,16 +113,15 @@
 - [ ] **Documentar** cada middleware
 
 ### Fase 8: Observability Layer (Dia 5-6)
-- [ ] Criar `app/observability/` com:
-  - `config.py` — ObservabilityConfig (stack-aware, pydantic-settings)
-  - `factory.py` — create_metrics, create_logger, create_tracer por stack
-  - `metrics.py` — CloudWatchMetrics (Floci/AWS) ou Prometheus (VPS)
-  - `tracing.py` — XRayTracer (Floci/AWS) ou LocalTracer (VPS/OTEL)
-  - `logging.py` — logger estruturado JSON
-- [ ] Expor endpoint `/metrics` (Prometheus)
-- [ ] Adicionar health check `/health`
-- [ ] [TEST] `tests/unit/test_observability.py` — testar factory e emissão
-- [ ] **Documentar** cada módulo de observabilidade
+- [x] Criar `app/observability/` com:
+  - `config.py` — ObservabilityConfig (stack-aware, pydantic-settings, env_prefix=OBSERVABILITY_)
+  - `factory.py` — init_observability() com dispatch por stack via settings.observability_stack
+  - `metrics.py` — CloudWatchMetrics (Floci/AWS, boto3) + LocalMetrics (VPS, logging)
+  - `tracing.py` — XRayTracer (Floci/AWS, aws_xray_sdk) + LocalTracer (VPS, logging)
+  - `logging.py` — logger estruturado JSON (python-json-logger)
+- [x] Expor endpoint `/metrics` (Prometheus via prometheus-fastapi-instrumentator)
+- [x] [TEST] `tests/unit/test_observability.py` — 9 testes (config, CloudWatchMetrics, LocalMetrics, logger JSON, factory dispatch)
+- [x] **Documentar** cada módulo de observabilidade
 
 ### Fase 9: Entry Point e Orquestração (Dia 5-6)
 - [ ] Implementar `app/main.py`:
