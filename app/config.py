@@ -19,6 +19,12 @@ class Settings(BaseSettings):
     env: str = "development"
     host: str = "0.0.0.0"
     port: int = 8001
+    allowed_origins: str = "http://localhost:3000"
+    observability_stack: str = "floci"
+    floci_endpoint: str = "http://floci:4566"
+    aws_region: str = "us-east-1"
+    xray_daemon_address: str = "floci:2000"
+    log_level: str = "INFO"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

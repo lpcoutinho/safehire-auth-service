@@ -35,14 +35,14 @@
 - [x] **Documentar** cada arquivo criado com docstring
 
 ### Fase 2: Camada de Configuração e Database (Dia 1-2)
-- [ ] Implementar `config.py` com Pydantic Settings + `OBSERVABILITY_STACK`
-- [ ] Implementar `database.py` com async PostgreSQL connection
+- [x] Implementar `config.py` com Pydantic Settings + `OBSERVABILITY_STACK`
+- [x] Implementar `database.py` com async PostgreSQL connection
 - [ ] Criar schema `auth_schema` no PostgreSQL
-- [ ] Implementar ORM models em `schemas/usuario.py`
-- [ ] Implementar `fake_database.py` para testes
-- [ ] [TEST] `tests/unit/test_config.py` — validar leitura de env vars e stack
-- [ ] [TEST] `tests/unit/test_database.py` — validar criação de engine e session
-- [ ] **Documentar** config.py, database.py, schemas/usuario.py
+- [x] Implementar ORM models em `schemas/usuario.py`
+- [x] Implementar `fake_database.py` para testes
+- [x] [TEST] `tests/unit/test_config.py` — validar leitura de env vars e stack
+- [x] [TEST] `tests/unit/test_database.py` — validar criação de engine e session
+- [x] **Documentar** config.py, database.py, schemas/usuario.py
 
 ### Fase 3: Camada de Models Pydantic (Dia 2)
 - [ ] Implementar `models/usuario.py`:

@@ -18,6 +18,18 @@
 - [x] Criar `Dockerfile`:
 - [x] Documentar cada arquivo com docstring no topo
 
+### Config Layer
+- [x] `app/config.py` — Settings com pydantic-settings (database_url, secret_key, observability_stack, etc.)
+- [x] [TEST] `tests/unit/test_config.py` — validar defaults, env vars override, observability stack switching
+- [x] Documentar config.py com docstring
+
+### Database Layer
+- [x] `app/database.py` — async engine, session factory, Base declarativa, get_session
+- [x] [TEST] `tests/unit/test_database.py` — validar engine, session factory, get_session
+- [x] `app/schemas/usuario.py` — ORM model Usuario (auth_schema)
+- [x] `tests/fakes/fake_database.py` — FakeDatabase com dict in-memory
+- [x] `tests/fakes/fake_postgres.py` — FakePostgres async generator
+
 ### Models Pydantic
 - [ ] `app/models/usuario.py`:
   ```python
@@ -71,7 +83,7 @@
 - [ ] Documentar cada classe com docstring
 
 ### Database Layer
-- [ ] `app/database.py`:
+- [x] `app/database.py`:
   ```python
   """Conexão assíncrona com PostgreSQL via SQLAlchemy."""
   from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
