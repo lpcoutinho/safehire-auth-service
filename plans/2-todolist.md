@@ -107,6 +107,11 @@
         raise
   ```
 
+### Repository Layer
+- [x] `app/repositories/usuario_repo.py` — UsuarioRepository com criar, buscar_por_email, buscar_por_id, listar_ativos, atualizar
+- [x] [TEST] `tests/unit/test_usuario_repo.py` — 8 testes com SQLite in-memory
+- [x] Documentar repository com docstring
+
 ### Observability Layer
 - [ ] `app/observability/config.py`:
   ```python
