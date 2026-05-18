@@ -4,6 +4,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    """Configurações centralizadas da aplicação — carregadas via pydantic-settings de .env e variáveis de ambiente."""
+
     database_url: str = (
         "postgresql+asyncpg://user:password@localhost:5432/safehire_auth"
     )
