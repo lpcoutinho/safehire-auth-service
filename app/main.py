@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.middleware.observability import setup_observability_middleware
+from app.middleware.security import setup_security_middleware
 from app.observability.factory import init_observability
 from app.routes import auth, usuarios
 
@@ -25,6 +26,7 @@ app.add_middleware(
 
 init_observability()
 setup_observability_middleware(app)
+setup_security_middleware(app)
 
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(usuarios.router, prefix="/usuarios", tags=["usuarios"])
