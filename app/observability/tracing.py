@@ -17,11 +17,7 @@ class XRayTracer:
 
         self._recorder = AWSXRayRecorder()
         if daemon_address:
-            from aws_xray_sdk.core.launcher import DaemonConfig
-
-            self._recorder.configure(
-                daemon_address=daemon_address,
-            )
+            self._recorder.configure(daemon_address=daemon_address)
 
     @contextmanager
     def in_subsegment(
