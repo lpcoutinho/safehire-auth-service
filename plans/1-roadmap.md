@@ -144,6 +144,6 @@
 - [x] `docs/observability.md` — guia de stacks (floci, vps, aws)
 - [x] `docs/runbook.md` — troubleshooting completo
 - [x] Revisão de código via 11 PRs
-- [x] Merge develop → staging (pendente: merge final)
+- [x] Merge develop → staging → main (concluído)
 
 ---
