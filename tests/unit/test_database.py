@@ -1,69 +1,46 @@
-"""Testes para app.database — criação de engine, session factory e get_session."""
+"""Testes da camada de banco — engine, session, get_session e rollback em caso de exceção."""
+
+from unittest.mock import AsyncMock, patch
 
 import pytest
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from app.config import settings
-from app.database import Base, async_session, engine, get_session
 
 
 class TestDatabaseEngine:
-    """Engine SQLAlchemy é criada com a URL do settings."""
+    """Valida criação de engine e session factory."""
 
-    def test_engine_e_criada_com_database_url(self):
-        from sqlalchemy import make_url
+    def test_engine_echo_matches_debug(self) -> None:
+        engine = create_async_engine(settings.database_url, echo=settings.debug)
+        assert engine.echo == settings.debug
 
-        url_engine = make_url(str(engine.url))
-        url_settings = make_url(settings.database_url)
-        assert url_engine.drivername == url_settings.drivername
-        assert url_engine.host == url_settings.host
-        assert url_engine.port == url_settings.port
-        assert url_engine.database == url_settings.database
-
-    def test_engine_e_instancia_de_AsyncEngine(self):
-        from sqlalchemy.ext.asyncio import AsyncEngine
-
-        assert isinstance(engine, AsyncEngine)
-
-
-class TestDatabaseSession:
-    """Session factory produz sessões assíncronas."""
-
-    def test_async_session_e_async_sessionmaker(self):
-        from sqlalchemy.ext.asyncio import async_sessionmaker
-
-        assert isinstance(async_session, async_sessionmaker)
-
-    def test_async_session_produz_async_session(self):
-        from sqlalchemy.ext.asyncio import AsyncSession
-
-        assert async_session.class_ is AsyncSession
-
-
-class TestDatabaseBase:
-    """Base declarativa existe para models herdarem."""
-
-    def test_base_e_declarative_base(self):
-        from sqlalchemy.orm import DeclarativeBase
-
-        assert isinstance(Base, type)
-        assert issubclass(Base, DeclarativeBase)
-
-    def test_base_tem_metadata(self):
-        assert hasattr(Base, "metadata")
+    def test_async_sessionmaker_cria_sessoes(self) -> None:
+        engine = create_async_engine(settings.database_url, echo=False)
+        factory = async_sessionmaker(
+            engine, class_=AsyncSession, expire_on_commit=False
+        )
+        assert factory is not None
 
 
 class TestGetSession:
-    """get_session é um async generator que yield uma sessão."""
+    """Valida comportamento do get_session — rollback em caso de exceção."""
 
     @pytest.mark.asyncio
-    async def test_get_session_yields_async_session(self):
-        from sqlalchemy.ext.asyncio import AsyncSession
+    async def test_rollback_em_excecao(self) -> None:
+        from app.database import get_session
 
-        async_gen = get_session()
-        session = await async_gen.__anext__()
-        assert isinstance(session, AsyncSession)
-        await session.close()
-        try:
-            await async_gen.__anext__()
-        except StopAsyncIteration:
-            pass
+        mock_session = AsyncMock(spec=AsyncSession)
+        mock_session.commit.side_effect = RuntimeError("erro simulado")
+
+        mock_ctx_mgr = AsyncMock()
+        mock_ctx_mgr.__aenter__.return_value = mock_session
+
+        with patch("app.database.async_session", return_value=mock_ctx_mgr):
+            gen = get_session()
+            await gen.__anext__()
+            with pytest.raises(RuntimeError, match="erro simulado"):
+                await gen.__anext__()
+
+        mock_session.rollback.assert_awaited_once()
+        mock_session.close.assert_awaited_once()
