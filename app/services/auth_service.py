@@ -1,5 +1,9 @@
 """Serviço de autenticação — registro, login, refresh e hash de senha com bcrypt."""
 
+from __future__ import annotations
+
+import logging
+import time
 from uuid import UUID
 
 from passlib.context import CryptContext
@@ -9,6 +13,8 @@ from app.models.usuario import UsuarioCreate
 from app.repositories.usuario_repo import UsuarioRepository
 from app.schemas.usuario import Usuario
 from app.services.jwt_service import JWTService
+
+logger = logging.getLogger(__name__)
 
 _pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -28,8 +34,10 @@ class AuthService:
 
         Uso: `usuario, access, refresh = await auth.registrar(create_data)`
         """
+        start = time.monotonic()
         ja_existe = await self._repo.buscar_por_email(data.email)
         if ja_existe:
+            logger.warning("SERVICE registrar duplicado email=%s", data.email)
             raise ValueError(f"Email já cadastrado: {data.email}")
 
         usuario = Usuario(
@@ -41,6 +49,13 @@ class AuthService:
         usuario = await self._repo.criar(usuario)
         access = self._jwt.criar_access_token(usuario.id)
         refresh = self._jwt.criar_refresh_token(usuario.id)
+        elapsed = time.monotonic() - start
+        logger.info(
+            "SERVICE registrar id=%s email=%s duracao=%.3fs",
+            usuario.id,
+            usuario.email,
+            elapsed,
+        )
         return usuario, access, refresh
 
     async def autenticar(self, data: LoginRequest) -> tuple[Usuario, str, str]:
@@ -48,14 +63,26 @@ class AuthService:
 
         Uso: `usuario, access, refresh = await auth.autenticar(login_data)`
         """
+        start = time.monotonic()
         usuario = await self._repo.buscar_por_email(data.email)
         if not usuario:
+            logger.warning(
+                "SERVICE autenticar email=%s usuario_inexistente", data.email
+            )
             raise ValueError(f"Credenciais inválidas para: {data.email}")
         if not self._verificar_senha(data.senha, usuario.senha_hash):
+            logger.warning("SERVICE autenticar email=%s senha_incorreta", data.email)
             raise ValueError(f"Credenciais inválidas para: {data.email}")
 
         access = self._jwt.criar_access_token(usuario.id)
         refresh = self._jwt.criar_refresh_token(usuario.id)
+        elapsed = time.monotonic() - start
+        logger.info(
+            "SERVICE autenticar id=%s email=%s duracao=%.3fs",
+            usuario.id,
+            usuario.email,
+            elapsed,
+        )
         return usuario, access, refresh
 
     async def refresh(self, refresh_token: str) -> tuple[str, str]:
@@ -63,14 +90,19 @@ class AuthService:
 
         Uso: `access, refresh = await auth.refresh("eyJ...")`
         """
+        start = time.monotonic()
         payload = self._jwt.verificar_token(refresh_token)
         if payload.tipo != "refresh":
+            logger.warning("SERVICE refresh token_tipo_invalido tipo=%s", payload.tipo)
             raise ValueError("Token fornecido não é um refresh token")
         usuario = await self._repo.buscar_por_id(payload.sub)
         if not usuario:
+            logger.warning("SERVICE refresh usuario_inexistente sub=%s", payload.sub)
             raise ValueError(f"Usuário não encontrado: {payload.sub}")
         access = self._jwt.criar_access_token(usuario.id)
         refresh = self._jwt.criar_refresh_token(usuario.id)
+        elapsed = time.monotonic() - start
+        logger.info("SERVICE refresh id=%s duracao=%.3fs", usuario.id, elapsed)
         return access, refresh
 
     async def buscar_usuario(self, usuario_id: UUID) -> Usuario:
@@ -78,9 +110,18 @@ class AuthService:
 
         Uso: `usuario = await auth.buscar_usuario(uuid4())`
         """
+        start = time.monotonic()
         usuario = await self._repo.buscar_por_id(usuario_id)
         if not usuario:
+            logger.warning("SERVICE buscar_usuario inexistente id=%s", usuario_id)
             raise ValueError(f"Usuário não encontrado: {usuario_id}")
+        elapsed = time.monotonic() - start
+        logger.info(
+            "SERVICE buscar_usuario id=%s email=%s duracao=%.3fs",
+            usuario_id,
+            usuario.email,
+            elapsed,
+        )
         return usuario
 
     def _hash_senha(self, senha: str) -> str:
