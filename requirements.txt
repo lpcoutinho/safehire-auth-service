@@ -37,6 +37,9 @@ aws-xray-sdk==2.14.0
 # Environment
 python-dotenv==1.0.1
 
+# Database — SQLite async para testes de integração
+aiosqlite==0.20.0
+
 # Dev / Testing
 pytest==8.3.3
 pytest-asyncio==0.24.0
