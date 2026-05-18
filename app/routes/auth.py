@@ -1,13 +1,12 @@
 """Endpoints de autenticação — registro, login e refresh de tokens."""
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_session
 from app.models.auth import LoginRequest, RefreshRequest, TokenResponse
 from app.models.usuario import UsuarioCreate, UsuarioResponse
 from app.repositories.usuario_repo import UsuarioRepository
-from app.schemas.usuario import Usuario
 from app.services.auth_service import AuthService
 from app.services.jwt_service import JWTService
 
@@ -29,7 +28,10 @@ async def register(
 
     Uso: `POST /auth/register` com `{"nome":"Fulano","email":"f@e.com","senha":"12345678","tipo":"candidato"}`
     """
-    usuario, _, _ = await auth.registrar(data)
+    try:
+        usuario, _, _ = await auth.registrar(data)
+    except ValueError as e:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=str(e))
     return UsuarioResponse.model_validate(usuario)
 
 
@@ -41,7 +43,10 @@ async def login(
 
     Uso: `POST /auth/login` com `{"email":"f@e.com","senha":"12345678"}`
     """
-    _, access, refresh = await auth.autenticar(data)
+    try:
+        _, access, refresh = await auth.autenticar(data)
+    except ValueError as e:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(e))
     return TokenResponse(access_token=access, refresh_token=refresh)
 
 
@@ -53,5 +58,8 @@ async def refresh(
 
     Uso: `POST /auth/refresh` com `{"refresh_token":"eyJ..."}`
     """
-    access, refresh = await auth.refresh(data.refresh_token)
+    try:
+        access, refresh = await auth.refresh(data.refresh_token)
+    except ValueError as e:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(e))
     return TokenResponse(access_token=access, refresh_token=refresh)
