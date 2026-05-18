@@ -71,19 +71,19 @@
 - [x] **Documentar** repository com docstring
 
 ### Fase 5: Camada de Services (Dia 3-4)
-- [ ] Implementar `services/jwt_service.py`:
+- [x] Implementar `services/jwt_service.py`:
   - `criar_access_token(usuario_id) → str`
   - `criar_refresh_token(usuario_id) → str`
   - `verificar_token(token) → TokenPayload`
-- [ ] Implementar `services/auth_service.py`:
+- [x] Implementar `services/auth_service.py`:
   - `registrar(data) → tuple[Usuario, str, str]`
   - `autenticar(data) → tuple[Usuario, str, str]`
   - `refresh(refresh_token) → tuple[str, str]`
   - `buscar_usuario(id) → Usuario`
-- [ ] [TEST] `tests/unit/test_jwt_service.py` — testar criação e validação de tokens **antes** da implementação
-- [ ] [TEST] `tests/unit/test_auth_service.py` — testar registro, login, refresh **antes** da implementação
+- [x] [TEST] `tests/unit/test_jwt_service.py` — 4 testes (access, refresh, inválido, expirado)
+- [x] [TEST] `tests/unit/test_auth_service.py` — 9 testes (registro, auth, refresh, busca) com FakeRepository
 - [ ] **Observabilidade**: cada método loga entrada/saída + métrica de duração
-- [ ] **Documentar** cada método público com docstring
+- [x] **Documentar** cada método público com docstring
 
 ### Fase 6: Camada de Routes (Dia 4-5)
 - [ ] Implementar `routes/usuarios.py`:
