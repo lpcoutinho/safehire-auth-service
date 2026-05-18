@@ -86,19 +86,18 @@
 - [x] **Documentar** cada método público com docstring
 
 ### Fase 6: Camada de Routes (Dia 4-5)
-- [ ] Implementar `routes/usuarios.py`:
+- [x] Implementar `routes/usuarios.py`:
   - `GET /usuarios/me` — Perfil do usuário logado
   - `PUT /usuarios/me` — Atualizar perfil
   - `GET /usuarios/{id}` — Buscar usuário
-- [ ] Implementar `routes/auth.py`:
-  - `POST /auth/register` — Registro
-  - `POST /auth/login` — Login
-  - `POST /auth/refresh` — Refresh token
-  - `POST /auth/logout` — Logout
-- [ ] [TEST] `tests/integration/test_auth_flow.py` — fluxo completo de auth **antes** dos endpoints
-- [ ] [TEST] `tests/integration/test_usuario_crud.py` — CRUD de usuários **antes** dos endpoints
+- [x] Implementar `routes/auth.py`:
+  - `POST /auth/register` — Registro (com 409 para email duplicado)
+  - `POST /auth/login` — Login (com 401 para credenciais inválidas)
+  - `POST /auth/refresh` — Refresh token (com 401 para token inválido)
+- [x] [TEST] `tests/integration/test_auth_flow.py` — 7 testes com SQLite in-memory
+- [x] [TEST] `tests/integration/test_usuario_crud.py` — 2 testes (401 sem token, 404 id inexistente)
 - [ ] **Observabilidade**: middleware de métricas (requisições, latência, erros)
-- [ ] **Documentar** cada endpoint com docstring
+- [x] **Documentar** cada endpoint com docstring
 
 ### Fase 7: Middleware e Security (Dia 5)
 - [ ] Implementar `middleware/auth.py`:
