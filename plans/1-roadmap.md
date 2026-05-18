@@ -45,18 +45,18 @@
 - [x] **Documentar** config.py, database.py, schemas/usuario.py
 
 ### Fase 3: Camada de Models Pydantic (Dia 2)
-- [ ] Implementar `models/usuario.py`:
+- [x] Implementar `models/usuario.py`:
   - `UsuarioCreateRequest`
   - `UsuarioResponse`
   - `RecrutadorCreateRequest`
   - `CandidatoCreateRequest`
-- [ ] Implementar `models/auth.py`:
+- [x] Implementar `models/auth.py`:
   - `LoginRequest`
   - `LoginResponse` (access_token, refresh_token)
   - `RefreshTokenRequest`
   - `RefreshTokenResponse`
-- [ ] [TEST] `tests/unit/test_models.py` — validar validação de cada schema (escrito **antes** da implementação)
-- [ ] **Documentar** cada modelo com docstring
+- [x] [TEST] `tests/unit/test_models.py` — validar validação de cada schema (escrito **antes** da implementação)
+- [x] **Documentar** cada modelo com docstring
 
 ### Fase 4: Camada de Repositories (Dia 2-3)
 - [ ] Implementar `repositories/usuario_repo.py`:
