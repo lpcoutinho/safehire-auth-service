@@ -59,16 +59,16 @@
 - [x] **Documentar** cada modelo com docstring
 
 ### Fase 4: Camada de Repositories (Dia 2-3)
-- [ ] Implementar `repositories/usuario_repo.py`:
+- [x] Implementar `repositories/usuario_repo.py`:
   - `UsuarioRepository.criar(usuario) → Usuario`
   - `UsuarioRepository.buscar_por_email(email) → Usuario | None`
   - `UsuarioRepository.buscar_por_id(id) → Usuario | None`
   - `UsuarioRepository.atualizar(usuario) → Usuario`
   - `UsuarioRepository.listar_ativos() → list[Usuario]`
-- [ ] Implementar FakeRepository para testes
-- [ ] [TEST] `tests/unit/test_usuario_repo.py` — testar cada método **antes** da implementação
+- [x] Implementar FakeDatabase para testes
+- [x] [TEST] `tests/unit/test_usuario_repo.py` — 8 testes (criar, buscar por email, buscar por id, listar ativos, atualizar)
 - [ ] **Observabilidade**: cada método de I/O emite métrica de duração
-- [ ] **Documentar** repository com docstring
+- [x] **Documentar** repository com docstring
 
 ### Fase 5: Camada de Services (Dia 3-4)
 - [ ] Implementar `services/jwt_service.py`:
