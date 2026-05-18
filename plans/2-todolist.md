@@ -31,7 +31,7 @@
 - [x] `tests/fakes/fake_postgres.py` — FakePostgres async generator
 
 ### Models Pydantic
-- [ ] `app/models/usuario.py`:
+- [x] `app/models/usuario.py`:
   ```python
   """Schemas Pydantic para Usuario (request/response)."""
   from pydantic import BaseModel, EmailStr, Field
@@ -61,7 +61,7 @@
     class Config:
       from_attributes = True
   ```
-- [ ] `app/models/auth.py`:
+- [x] `app/models/auth.py`:
   ```python
   """Schemas Pydantic para autenticação (login, tokens)."""
   from pydantic import BaseModel, Field
@@ -79,8 +79,8 @@
   class RefreshTokenRequest(BaseModel):
     refresh_token: str
   ```
-- [ ] [TEST] Testes escritos **antes** da implementação
-- [ ] Documentar cada classe com docstring
+- [x] [TEST] Testes escritos **antes** da implementação
+- [x] Documentar cada classe com docstring
 
 ### Database Layer
 - [x] `app/database.py`:
