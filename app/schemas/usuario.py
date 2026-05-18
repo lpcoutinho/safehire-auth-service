@@ -12,6 +12,8 @@ from app.models.usuario import TipoUsuario
 
 
 class Usuario(Base):
+    """Modelo ORM para tabela auth_schema.usuarios — colunas mapeadas via SQLAlchemy Mapped."""
+
     __tablename__ = "usuarios"
     __table_args__ = {"schema": "auth_schema"}
 
